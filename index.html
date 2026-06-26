@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard RT 02: Indonesia 81 (2026)</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* === KODE BACKGROUND === */
+        .bg-foto {
+            position: fixed;
+            inset: 0;
+            background-image: url("images/warga.jpeg"); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+        }
+
+        .bg-kaca {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(255, 255, 255, 0.4); 
+            backdrop-filter: blur(4px); 
+            z-index: -1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animasi-muncul {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden">
+    
+    <div class="bg-foto"></div>
+    <div class="bg-kaca"></div>
+    
+    <nav class="bg-white/80 backdrop-blur-md border-b border-red-50 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
+            
+            <div class="flex items-center gap-2 relative">
+                <button onclick="toggleMenu()" class="cursor-pointer focus:outline-none hover:bg-red-50 p-1.5 rounded-lg transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="#9B1C1C" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+                <span class="text-xs md:text-sm font-black tracking-widest text-[#9B1C1C]">NUSANTARA BARU</span>
+                <div id="dropdown-menu" class="hidden absolute top-12 left-0 bg-white shadow-xl border border-gray-100 rounded-xl w-48 overflow-hidden z-50">
+                    <a href="#bagian-laporan" onclick="toggleMenu()" class="block px-4 py-3 text-sm text-gray-700 hover:bg-red-50 hover:text-[#9B1C1C] transition-colors font-semibold border-b border-gray-50">
+                        📄 Laporan Warga
+                    </a>
+                
+                    <a href="edit-profil.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-red-50 hover:text-[#9B1C1C] transition-colors font-semibold">
+                        ✏️ Edit Profil
+                    </a>
+                </div>
+            </div>
+
+            <div class="cursor-pointer group" onclick="bukaLogin()">
+                <img class="w-9 h-9 rounded-full border-2 border-amber-500 object-cover group-hover:scale-110 group-hover:shadow-md transition-all" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" alt="Profile">
+            </div>
+            
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 pt-8 pb-32 relative z-10 flex flex-col items-center">
+        
+        <div class="text-center my-2 select-none flex justify-center">
+            <span class="text-[100px] md:text-[150px] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[#B91C1C] via-[#9B1C1C] to-[#651515]" style="-webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                81
+            </span>
+        </div>
+        <div class="text-center px-2 mb-8 max-w-2xl">
+            <h1 class="text-2xl md:text-4xl font-black text-[#111827] leading-tight mb-4">81. Tahun Indonesia<br class="hidden md:block"> Merdeka</h1>
+            <p class="text-xs md:text-base text-gray-500 font-medium leading-relaxed">
+                Selamat Datang di Perayaan Virtual 17 Agustus 2026. Bersama kita melangkah menuju masa depan Indonesia yang tangguh, berkelanjutan, dan penuh harmoni.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-4">
+            <a href="Tradisi.html" class="bg-white/90 backdrop-blur-sm p-5 rounded-[24px] flex items-start gap-4 shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all no-underline">
+                <div class="p-3 bg-red-50 rounded-2xl text-xl text-[#B91C1C] shrink-0">⚙️</div>
+                <div>
+                    <h4 class="text-base font-bold text-gray-800">Tradisi Digital</h4>
+                    <p class="text-xs text-gray-500 mt-1.5">Menampilkan warisan budaya melalui instalasi seni generative terkini.</p>
+                </div>
+            </a>    
+            <a href="Visi 2026.html" class="bg-white/90 backdrop-blur-sm p-5 rounded-[24px] flex items-start gap-4 shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all no-underline">
+                <div class="p-3 bg-amber-50 rounded-2xl text-xl text-amber-600 shrink-0">🚀</div>
+                <div>
+                    <h4 class="text-base font-bold text-gray-800">Visi 2026</h4>
+                    <p class="text-xs text-gray-500 mt-1.5">Menjelajahi peta jalan menuju Indonesia Emas melalui simulasi virtual.</p>
+                </div>
+            </a>
+            <a href="Dokumentasi.html" class="bg-white/90 backdrop-blur-sm p-5 rounded-[24px] flex items-start gap-4 shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all no-underline">
+                <div class="p-3 bg-rose-50 rounded-2xl text-xl text-purple-800 shrink-0">👥</div>
+                <div>
+                    <h4 class="text-base font-bold text-gray-800">Dokumentasi</h4>
+                    <p class="text-xs text-gray-500 mt-1.5">Bergabunglah dengan jutaan warga dalam konser virtual interaktif.</p>
+                </div>
+            </a>
+        </div>
+
+        <div id="bagian-laporan" class="w-full mt-16 pt-8">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-3xl font-black text-gray-900">Pusat Bantuan & Laporan</h2>
+                <p class="text-sm text-gray-700 mt-2">Akses cepat darurat dan pelaporan masalah fasilitas lingkungan RT 02.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <div class="lg:col-span-4 flex flex-col gap-4">
+                    <h3 class="text-lg font-extrabold text-gray-900 flex items-center gap-2 mb-2">🚨 Panggilan Darurat</h3>
+                    
+                    <a href="tel:110" class="bg-white/95 backdrop-blur-sm border border-blue-100 hover:bg-blue-50 p-4 rounded-[24px] flex items-center justify-between transition-transform hover:-translate-y-1 active:scale-95 no-underline shadow-sm">
+                        <div class="flex items-center gap-4">
+                            <span class="text-2xl bg-blue-100 w-12 h-12 flex items-center justify-center rounded-full">🚓</span>
+                            <div>
+                                <span class="block text-sm font-bold text-blue-900">Polisi</span>
+                                <span class="block text-xs text-gray-500 mt-0.5">Keamanan & Ketertiban</span>
+                            </div>
+                        </div>
+                        <span class="text-xl font-black text-blue-700">110</span>
+                    </a>
+                    
+                    <a href="tel:113" class="bg-white/95 backdrop-blur-sm border border-red-100 hover:bg-red-50 p-4 rounded-[24px] flex items-center justify-between transition-transform hover:-translate-y-1 active:scale-95 no-underline shadow-sm">
+                        <div class="flex items-center gap-4">
+                            <span class="text-2xl bg-red-100 w-12 h-12 flex items-center justify-center rounded-full">🚒</span>
+                            <div>
+                                <span class="block text-sm font-bold text-red-900">Damkar</span>
+                                <span class="block text-xs text-gray-500 mt-0.5">Kebakaran & Penyelamatan</span>
+                            </div>
+                        </div>
+                        <span class="text-xl font-black text-red-700">113</span>
+                    </a>
+
+                    <a href="tel:119" class="bg-white/95 backdrop-blur-sm border border-emerald-100 hover:bg-emerald-50 p-4 rounded-[24px] flex items-center justify-between transition-transform hover:-translate-y-1 active:scale-95 no-underline shadow-sm">
+                        <div class="flex items-center gap-4">
+                            <span class="text-2xl bg-emerald-100 w-12 h-12 flex items-center justify-center rounded-full">🚑</span>
+                            <div>
+                                <span class="block text-sm font-bold text-emerald-900">Ambulans</span>
+                                <span class="block text-xs text-gray-500 mt-0.5">Kesehatan Darurat</span>
+                            </div>
+                        </div>
+                        <span class="text-xl font-black text-emerald-700">119</span>
+                    </a>
+                </div>
+
+                <div class="lg:col-span-8 flex flex-col gap-4">
+                    <h3 class="text-lg font-extrabold text-gray-900 flex items-center gap-2 mb-2">💬 Kategori Laporan Warga</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
+                        
+                        <a href="Fasilitas_umum.html" class="block bg-white/95 backdrop-blur-sm p-5 rounded-[24px] shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-left group w-full cursor-pointer decoration-transparent">
+                            <div class="flex items-start gap-4">
+                                <div class="p-3 bg-blue-50 rounded-2xl text-xl shrink-0 group-hover:scale-110 transition-transform">💡</div>
+                                <div>
+                                    <h4 class="text-sm font-bold text-gray-900">Fasilitas Umum</h4>
+                                    <p class="text-xs text-gray-500 mt-1.5 leading-relaxed">Lapor lampu jalan mati, jalan berlubang, atau kerusakan fasilitas publik.</p>
+                                </div>
+                            </div>
+                        </a>
+                    
+                        <a href="Kebersihan.html" class="block bg-white/95 backdrop-blur-sm p-5 rounded-[24px] shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-left group w-full cursor-pointer decoration-transparent">
+                            <div class="flex items-start gap-4">
+                                <div class="p-3 bg-green-50 rounded-2xl text-xl shrink-0 group-hover:scale-110 transition-transform">🧹</div>
+                                <div>
+                                    <h4 class="text-sm font-bold text-gray-900">Kebersihan Lingkungan</h4>
+                                    <p class="text-xs text-gray-500 mt-1.5 leading-relaxed">Lapor tumpukan sampah, selokan mampet, atau permintaan fogging.</p>
+                                </div>
+                            </div>
+                        </a>
+                    
+                        <a href="Keamanan.html" class="block bg-white/95 backdrop-blur-sm p-5 rounded-[24px] shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-left group w-full cursor-pointer decoration-transparent">
+                            <div class="flex items-start gap-4">
+                                <div class="p-3 bg-blue-50 rounded-2xl text-xl shrink-0 group-hover:scale-110 transition-transform">🛡️</div>
+                                <div>
+                                    <h4 class="text-sm font-bold text-gray-900">Keamanan RT</h4>
+                                    <p class="text-xs text-gray-500 mt-1.5 leading-relaxed">Lapor tamu tak dikenal, keributan, atau jadwal ronda malam.</p>
+                                </div>
+                            </div>
+                        </a>
+                    
+                        <a href="Usulan.html" class="block bg-white/95 backdrop-blur-sm p-5 rounded-[24px] shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-left group w-full cursor-pointer decoration-transparent">
+                            <div class="flex items-start gap-4">
+                                <div class="p-3 bg-purple-50 rounded-2xl text-xl shrink-0 group-hover:scale-110 transition-transform">📝</div>
+                                <div>
+                                    <h4 class="text-sm font-bold text-gray-900">Ide & Usulan Warga</h4>
+                                    <p class="text-xs text-gray-500 mt-1.5 leading-relaxed">Punya ide acara Agustusan atau usulan untuk kemajuan lingkungan? Sampaikan di sini.</p>
+                                </div>
+                            </div>
+                        </a>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <div id="modal-login" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+        <div class="bg-white rounded-[32px] p-6 md:p-8 w-full max-w-sm shadow-2xl relative animasi-muncul border border-gray-100">
+            <button onclick="tutupLogin()" class="absolute top-5 right-5 text-gray-400 hover:text-red-600 transition-colors bg-gray-50 hover:bg-red-50 p-2 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div class="text-center mb-6 mt-2">
+                <div class="w-16 h-16 bg-red-50 border border-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl shadow-inner">📱</div>
+                <h2 class="text-2xl font-extrabold text-gray-900">Login Warga</h2>
+                <p class="text-xs text-gray-500 mt-1">Masukkan nomor handphone yang terdaftar di sistem pendataan RT 02.</p>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-[11px] font-bold text-gray-700 mb-1.5 uppercase tracking-wider">Nomor Handphone</label>
+                    <input type="number" id="input-nohp" placeholder="Contoh: 081234567890" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 text-sm outline-none focus:border-red-400 focus:bg-white transition-all shadow-inner">
+                </div>
+                <button onclick="prosesLogin()" class="w-full bg-gradient-to-r from-[#B91C1C] to-[#9B1C1C] hover:from-[#9B1C1C] hover:to-[#7A1515] text-white font-bold py-3.5 rounded-xl shadow-md shadow-red-900/20 transition-all active:scale-95 flex justify-center items-center gap-2 mt-2">
+                    MASUK SEKARANG
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('dropdown-menu').classList.toggle('hidden');
+        }
+        function bukaLogin() {
+            document.getElementById('modal-login').classList.remove('hidden');
+        }
+        function tutupLogin() {
+            document.getElementById('modal-login').classList.add('hidden');
+        }
+        function prosesLogin() {
+            const nohp = document.getElementById('input-nohp').value;
+            if(nohp.trim() === "") {
+                alert("Nomor Handphone tidak boleh kosong ya!"); return;
+            }
+            alert("Berhasil login dengan nomor: " + nohp + "\n\nSelamat datang kembali, Warga!");
+            document.getElementById('input-nohp').value = "";
+            tutupLogin();
+        }
+    </script>
+</body>
+</html>

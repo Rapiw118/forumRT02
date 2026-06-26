@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panggilan Darurat Damkar</title>
+<style>
+  /* Gaya dasar */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+  }
+
+  .emergency-card {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 16px 20px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    max-width: 320px;
+    cursor: pointer;
+  }
+
+  .emergency-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Styling Ikon Damkar */
+  .icon-box-damkar {
+    background-color: #ffeaea; 
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin-right: 16px;
+    flex-shrink: 0;
+  }
+
+  .text-info {
+    flex-grow: 1;
+  }
+
+  .text-info h4.damkar-title {
+    margin: 0;
+    font-size: 16px;
+    color: #c02a2a; 
+    font-weight: 700;
+  }
+
+  .text-info p {
+    margin: 4px 0 0 0;
+    font-size: 12px;
+    color: #888888;
+  }
+
+  /* Ukuran font diperkecil agar nomor panjang muat */
+  .number-badge-damkar {
+    font-size: 14px; 
+    font-weight: 800;
+    color: #d32f2f; 
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+
+  <!-- href menggunakan format tanpa spasi dan tanda kurung agar terbaca oleh sistem HP -->
+  <a href="tel:02122137870" class="emergency-card">
+    <div class="icon-box-damkar">
+      🚒
+    </div>
+    <div class="text-info">
+      <h4 class="damkar-title">Damkar</h4>
+      <p>Kebakaran & Penyelamatan</p>
+    </div>
+    <!-- Teks yang ditampilkan di layar sesuai dengan format penulisan nomor -->
+    <div class="number-badge-damkar">
+      (021) 22137870
+    </div>
+  </a>
+
+</body>
+</html>

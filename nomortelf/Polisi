@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panggilan Darurat Polisi</title>
+<style>
+  /* Gaya dasar untuk font dan tampilan */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+  }
+
+  /* Styling untuk Kartu Panggilan */
+  .emergency-card {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 16px 20px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    max-width: 320px;
+    cursor: pointer;
+  }
+
+  .emergency-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Styling untuk Ikon */
+  .icon-box {
+    background-color: #eef4ff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin-right: 16px;
+    flex-shrink: 0;
+  }
+
+  /* Styling untuk Teks (Judul dan Deskripsi) */
+  .text-info {
+    flex-grow: 1;
+  }
+
+  .text-info h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #1a428a;
+    font-weight: 700;
+  }
+
+  .text-info p {
+    margin: 4px 0 0 0;
+    font-size: 12px;
+    color: #888888;
+  }
+
+  /* Styling untuk Nomor Panggilan - disesuaikan agar muat */
+  .number-badge {
+    font-size: 14px; /* Ukuran font diperkecil agar nomor telepon muat */
+    font-weight: 800;
+    color: #2b65d9;
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+
+  <!-- href diubah menggunakan protokol tel: diikuti nomor telepon spesifik -->
+  <a href="tel:0218802738" class="emergency-card">
+    <div class="icon-box">
+      🚓
+    </div>
+    <div class="text-info">
+      <h4>Polisi</h4>
+      <p>Keamanan & Ketertiban</p>
+    </div>
+    <!-- Teks angka di kartu diubah agar warga tahu nomor yang dihubungi -->
+    <div class="number-badge">
+      021-8802738
+    </div>
+  </a>
+
+</body>
+</html>

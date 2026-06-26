@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puncak Perayaan Digital RI</title>
+    
+    <!-- Font & Tailwind CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Library untuk Efek Kembang Api / Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        
+        /* Animasi Bendera Berkibar (Sederhana) */
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(5deg); }
+            100% { transform: rotate(0deg); }
+        }
+        .flag-wave {
+            animation: wave 2.5s infinite ease-in-out;
+            display: inline-block;
+        }
+
+        /* Ornamen Partikel Latar Belakang */
+        .bg-particles {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at center, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-[#9B1C1C] via-[#B91C1C] to-[#111111] min-h-screen text-white flex flex-col relative">
+
+    <div class="bg-particles"></div>
+
+    <!-- HEADER & TOMBOL KEMBALI (FULL WIDTH RESPONSIVE) -->
+    <div class="w-full max-w-7xl mx-auto p-6 md:p-8 flex justify-between items-center z-20 relative">
+        <a href="Welcome.html" class="bg-white/10 hover:bg-white/20 backdrop-blur-md p-2 md:p-3 rounded-full transition-all inline-block cursor-pointer border border-white/10">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 md:w-6 md:h-6 text-white">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+        </a>
+        <span class="text-xs md:text-sm font-bold tracking-widest text-white/80 uppercase">Live Event</span>
+        <div class="w-9 h-9 md:w-12 md:h-12"></div> <!-- Spacer Penyeimbang -->
+    </div>
+
+    <!-- KONTEN UTAMA PERAYAAN -->
+    <main class="flex-grow flex flex-col items-center justify-center px-6 text-center z-10 relative pb-20">
+        
+        <!-- Bendera yang semakin besar di layar PC -->
+        <div class="text-[100px] md:text-[140px] leading-none mb-4 md:mb-6 flag-wave drop-shadow-2xl">🇮🇩</div>
+        
+        <h1 class="text-5xl md:text-7xl font-black mb-4 leading-tight drop-shadow-lg tracking-tight">
+            DIRGAHAYU<br>INDONESIA
+        </h1>
+        <p class="text-white/80 text-sm md:text-lg mb-10 md:mb-14 font-medium max-w-lg md:max-w-2xl">
+            Mari kobarkan semangat kebangsaan di ruang digital! Bersama seluruh rakyat Indonesia dari Sabang sampai Merauke.
+        </p>
+
+        <!-- KARTU INTERAKTIF -->
+        <!-- Di PC, lebarnya dibatasi (max-w-lg) agar tidak melar seukuran layar, tapi tetap proporsional -->
+        <div class="bg-white text-gray-800 w-full max-w-md md:max-w-lg p-8 md:p-10 rounded-[32px] shadow-2xl relative z-20 border border-white/20">
+            <h3 class="font-bold text-xl md:text-2xl mb-2 text-[#9B1C1C]">Panggung Virtual 17-an</h3>
+            <p class="text-xs md:text-sm text-gray-500 mb-8 leading-relaxed">Tekan tombol di bawah untuk membunyikan mercon digital dan mengibarkan bendera bersama jutaan rakyat lainnya.</p>
+            
+            <button onclick="rayakanSekarang()" class="w-full bg-gradient-to-r from-[#9B1C1C] to-[#C1121F] hover:from-[#780000] hover:to-[#9B1C1C] text-white font-bold py-4 md:py-5 px-6 rounded-2xl shadow-xl shadow-red-900/50 flex items-center justify-center gap-3 text-lg md:text-xl transition-all transform hover:-translate-y-1 active:scale-95 cursor-pointer">
+                🎉 KIBARKAN BENDERA!
+            </button>
+        </div>
+        
+    </main>
+
+    <!-- Script Javascript untuk Animasi Confetti -->
+    <script>
+        function rayakanSekarang() {
+            // Efek Confetti dari ujung kiri dan kanan bawah
+            var duration = 3 * 1000; // 3 detik
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 50 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 50 * (timeLeft / duration);
+                
+                // Kembang api warna merah, putih, dan emas
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    colors: ['#FF0000', '#FFFFFF', '#FFD700'],
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } 
+                }));
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    colors: ['#FF0000', '#FFFFFF', '#FFD700'],
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } 
+                }));
+            }, 250);
+        }
+    </script>
+</body>
+</html>
