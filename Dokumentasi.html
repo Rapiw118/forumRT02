@@ -93,8 +93,8 @@
         // ========================================================
         // ⚠️ SETUP PARAMETER AKUN CLOUDINARY LU DI SINI
         // ========================================================
-        const CLOUDINARY_CLOUD_NAME = "MASUKKAN_CLOUD_NAME_LU";
-        const CLOUDINARY_UPLOAD_PRESET = "MASUKKAN_UPLOAD_PRESET_LU";
+        const CLOUDINARY_CLOUD_NAME = "dvwwxokyj"; // diperhatikan
+        const CLOUDINARY_UPLOAD_PRESET = "8be5e7ab-5ac3-4ffa-a832-e0a5369590b2"; // diperhatikakan
 
         // Konfigurasi asli Firebase Projek Forum RT 02 milikmu
         const firebaseConfig = {
@@ -115,7 +115,7 @@
             const file = event.target.files[0];
             if (!file) return;
 
-            if (CLOUDINARY_CLOUD_NAME === "MASUKKAN_CLOUD_NAME_LU") {
+            if (CLOUDINARY_CLOUD_NAME === "MASUKKAN_CLOUD_NAME_LU") {   // diperhatikan
                 alert("Eror: Isi dulu parameter Cloudinary Lu di baris kodingan script!");
                 return;
             }

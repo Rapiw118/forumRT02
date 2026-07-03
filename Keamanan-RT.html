@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pusat Keamanan RT 02</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F8FAFC;
+            color: #1E293B;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Header / Navbar Styling */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #F1F5F9;
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .header-content {
+            max-w: 1000px;
+            margin: 0 auto;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        /* FIX: Link dijamin aman diakses & responsif klik */
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #2563EB;
+            text-decoration: none;
+            transition: color 0.2s;
+            position: relative;
+            z-index: 50;
+            cursor: pointer;
+        }
+
+        .btn-back:hover {
+            color: #1D4ED8;
+        }
+
+        .header-title {
+            font-size: 12px;
+            font-weight: 800;
+            color: #0F172A;
+            letter-spacing: -0.025em;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .profile-icon {
+            width: 28px;
+            height: 28px;
+            background-color: #F1F5F9;
+            border-radius: 50%;
+            border: 1px solid #E2E8F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 50;
+        }
+
+        /* Container Content */
+        main {
+            max-width: 640px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex-grow: 1;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .shield-badge {
+            width: 56px;
+            height: 56px;
+            background-color: #EFF6FF;
+            border: 1px solid #DBEAFE;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px auto;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .hero h1 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #0F172A;
+            letter-spacing: -0.025em;
+        }
+
+        .hero p {
+            font-size: 12px;
+            color: #64748B;
+            margin-top: 4px;
+            line-height: 1.6;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Card Layout */
+        .card {
+            background: #ffffff;
+            border: 1px solid #F1F5F9;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .icon-box-green {
+            width: 32px;
+            height: 32px;
+            background-color: #F0FDF4;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #16A34A;
+            flex-shrink: 0;
+        }
+
+        .icon-box-blue {
+            width: 32px;
+            height: 32px;
+            background-color: #EFF6FF;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2563EB;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0F172A;
+        }
+
+        .card-subtitle {
+            font-size: 11px;
+            color: #94A3B8;
+            margin-top: 2px;
+            line-height: 1.4;
+        }
+
+        /* Buttons Styling */
+        .btn-green {
+            width: 100%;
+            background-color: #22C55E;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-green:hover {
+            background-color: #16A34A;
+        }
+
+        .btn-blue {
+            width: 100%;
+            background-color: #1D4ED8;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(29, 78, 216, 0.2);
+        }
+
+        .btn-blue:hover {
+            background-color: #1E40AF;
+        }
+
+        button:active {
+            transform: scale(0.99);
+        }
+
+        .form-line {
+            border: none;
+            border-top: 1px solid #F1F5F9;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 520px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748B;
+            margin-bottom: 6px;
+        }
+
+        .form-control {
+            width: 100%;
+            background-color: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 12px;
+            outline: none;
+            transition: all 0.2s;
+            font-family: inherit;
+            color: #1E293B;
+        }
+
+        .form-control:focus {
+            background-color: #ffffff;
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+        }
+
+        textarea.form-control {
+            resize: none;
+        }
+
+        /* Footer Area */
+        footer {
+            background-color: #ffffff;
+            border-top: 1px solid #F1F5F9;
+            padding: 16px 0;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-w: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-size: 10px;
+            color: #94A3B8;
+            font-weight: 500;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-links a {
+            color: #94A3B8;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #475569;
+        }
+
+        .alert-success {
+            background-color: #F0FDF4;
+            border: 1px solid #BBF7D0;
+            color: #166534;
+            border-radius: 16px;
+            padding: 14px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="btn-back">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" style="width:14px; height:14px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                </svg>
+                Kembali ke Beranda
+            </a>
+            <span class="header-title">Pusat Keamanan RT 02</span>
+            <div class="profile-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px; height:14px; color:#475569;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero">
+            <div class="shield-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#2563EB" style="width:24px; height:24px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                </svg>
+            </div>
+            <h1>Pusat Keamanan RT 02</h1>
+            <p>Laporkan masalah ketertiban lingkungan atau hubungi pengurus secara cepat.</p>
+        </div>
+
+        <div class="cards-stack">
+            <div id="notif-sukses" class="alert-success hidden">
+                ✅ Terimakasih Atas Laporan Keamanan yang anda kirim
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon-box-green">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:16px; height:16px;">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 18.09a5.967 5.967 0 01-.707-1.75A5.967 5.967 0 013 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Hubungi Pak RT via WhatsApp</h3>
+                        <p class="card-subtitle">Punya masalah darurat? Klik tombol di bawah untuk langsung terhubung ke WhatsApp Pak RT otomatis.</p>
+                    </div>
+                </div>
+                <button id="btn-wa-langsung" class="btn-green">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:14px; height:14px;"><path d="M12 2A10 10 0 0 0 2 12a9.89 9.89 0 0 0 1.15 4.63L2 22l5.58-1.42A9.84 9.84 0 0 0 12 22a10 10 0 0 0 10-10A10 10 0 0 0 12 2zm5.38 14c-.2.56-1.16 1.07-1.6 1.11-.43.05-.86.07-2.61-.62a9.71 9.71 0 0 1-4-3.51c-.81-1.09-1.3-2.38-1.3-3.71A4 4 0 0 1 9 6.54c.24-.13.48-.2.72-.2h.53c.18 0 .42 0 .64.49l.73 1.77c.07.15.11.31.01.49l-.43.71c-.13.16-.27.32-.11.6a6.83 6.83 0 0 0 1.83 2.27 5.6 5.6 0 0 0 2.65 1.48c.31.06.49-.09.67-.29l.54-.69c.19-.24.38-.2.64-.1l1.68.79c.26.13.52.26.58.38.07.13.07.72-.13 1.28z"/></svg>
+                    Hubungi WhatsApp Pak RT
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon-box-blue">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:16px; height:16px;">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Buat Laporan Keamanan Warga</h3>
+                        <p class="card-subtitle">Data yang Anda masukkan akan langsung tersimpan di pusat data keamanan lingkungan.</p>
+                    </div>
+                </div>
+
+                <div class="form-line"></div>
+
+                <form id="form-laporan">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Nama Pelapor (Warga)</label>
+                            <input type="text" id="nama_pelapor" class="form-control" placeholder="Contoh: Rafi Nugraha" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nomor Rumah / Blok</label>
+                            <input type="text" id="blok_rumah" class="form-control" placeholder="Contoh: Blok C No. 12" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label class="form-label">Detail Laporan Kejadian</label>
+                        <textarea id="detail_kejadian" rows="4" class="form-control" placeholder="Tuliskan ciri-ciri orang asing atau detail kejadian di sini..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-blue">
+                        <svg xmlns="http://www.w3.org/2000/xl" viewBox="0 0 24 24" fill="currentColor" style="width:12px; height:12px; margin-right: 2px;"><path d="M3 22v-20l18 10-18 10z"/></svg>
+                        KIRIM KE PAK RT
+                    </button>
+                </form>
+            </div>
+            
+            </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <span>© 2024 Pusat Keamanan RT 02 - Aman & Nyaman</span>
+            <div class="footer-links">
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Hubungi Pengurus</a>
+                <a href="#">Laporan Bulanan</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Kontak asli WhatsApp Pak RT milik Forum RT 02
+        const NOMOR_WA_PAK_RT = "6281314913665"; 
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCgmO-Ej-HFvCT_1oTIkGwDltRMNv0x4KM",
+            authDomain: "forum-rt-02.firebaseapp.com",
+            projectId: "forum-rt-02",
+            storageBucket: "forum-rt-02.firebasestorage.app",
+            messagingSenderId: "324032531686",
+            appId: "1:324032531686:web:2f3e441f03642001febf27",
+            measurementId: "G-4F7ZE7KQJ1"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // LOGIKA WA DARURAT
+        const btnWaLangsung = document.getElementById('btn-wa-langsung');
+        if (btnWaLangsung) {
+            btnWaLangsung.addEventListener('click', () => {
+                const pesanDarurat = `Halo Pak RT, saya membutuhkan bantuan atau koordinasi darurat terkait keamanan lingkungan RT 02 segera. Terima kasih.`;
+                const urlWaLangsung = `https://api.whatsapp.com/send?phone=${NOMOR_WA_PAK_RT}&text=${encodeURIComponent(pesanDarurat)}`;
+                window.open(urlWaLangsung, '_blank');
+            });
+        }
+
+        // LOGIKA SUBMIT LAPORAN
+        const formLaporan = document.getElementById('form-laporan');
+        if (formLaporan) {
+            formLaporan.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const nama = document.getElementById('nama_pelapor').value.trim();
+                const blok = document.getElementById('blok_rumah').value.trim();
+                const detail = document.getElementById('detail_kejadian').value.trim();
+                const tanggalHariIni = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+                try {
+                    // Simpan data teks murni langsung ke database FIREBASE Firestore asli lu bray
+                    await addDoc(collection(db, "laporan_keamanan"), {
+                        kategori: "Keamanan RT",
+                        namaWarga: nama,
+                        blokRumah: blok,
+                        deskripsiKejadian: detail,
+                        timestamp: new Date()
+                    });
+
+                    const notif = document.getElementById('notif-sukses');
+                    if (notif) notif.classList.remove('hidden');
+
+                    // Susun format pesan teks WA Pak RT
+                    const teksPesan = `🚨 *LAPORAN KEAMANAN WARGA RT 02* 🚨\n\n` +
+                                      `• *Hari/Tanggal:* ${tanggalHariIni}\n` +
+                                      `• *Nama Pelapor:* ${nama}\n` +
+                                      `• *No. Rumah / Blok:* ${blok}\n` +
+                                      `• *Detail Laporan:* ${detail}\n\n` +
+                                      `_Laporan data ini telah resmi tersimpan di database keamanan Forum RT 02. Mohon atensinya Pak RT, terima kasih._`;
+
+                    // Alihkan aman pakai nomor WA Pak RT asli
+                    const urlWhatsApp = `https://api.whatsapp.com/send?phone=${+62 813-1491-3665}&text=${encodeURIComponent(teksPesan)}`;
+                    window.open(urlWhatsApp, '_blank');
+
+                    formLaporan.reset();
+
+                    setTimeout(() => {
+                        if (notif) notif.classList.add('hidden');
+                    }, 5000);
+
+                } catch (error) {
+                    alert("Firebase Error: " + error.message);
+                    console.error(error);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

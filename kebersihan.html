@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Debug Kebersihan RT 02</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
+        .card { background: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: auto; }
+        .form-control { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; }
+        .btn-submit { width: 100%; padding: 15px; background: #059669; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h3>Form Laporan</h3>
+        <form id="form-laporan">
+            <input type="text" id="nama" class="form-control" placeholder="Nama" required>
+            <textarea id="ket" class="form-control" placeholder="Detail" required></textarea>
+            <input type="file" id="foto" class="form-control">
+            <button type="submit" id="btn-submit" class="btn-submit">KIRIM KE PAK RT</button>
+        </form>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCgmO-Ej-HFvCT_1oTIkGwDltRMNv0x4KM", authDomain: "forum-rt-02.firebaseapp.com", projectId: "forum-rt-02",
+            storageBucket: "forum-rt-02.firebasestorage.app", messagingSenderId: "324032531686", appId: "1:324032531686:web:2f3e441f03642001febf27"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        document.getElementById('form-laporan').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit');
+            btn.innerText = "Mengirim...";
+            
+            try {
+                alert("1. Memulai proses...");
+                const nama = document.getElementById('nama').value;
+                const ket = document.getElementById('ket').value;
+                const file = document.getElementById('foto').files[0];
+                let urlFoto = "No Foto";
+
+                if (file) {
+                    alert("2. Sedang upload foto...");
+                    const storageRef = ref(storage, "bukti/" + Date.now());
+                    await uploadBytes(storageRef, file);
+                    urlFoto = await getDownloadURL(storageRef);
+                    alert("3. Foto sukses terupload!");
+                }
+
+                alert("4. Sedang menyimpan ke Database...");
+                await addDoc(collection(db, "laporan_kebersihan"), {
+                    nama: nama, detail: ket, foto: urlFoto, timestamp: new Date()
+                });
+                alert("5. Sukses simpan ke Database! Membuka WhatsApp...");
+
+                window.location.href = `https://wa.me/6281314913665?text=Laporan:%20${encodeURIComponent(ket)}`;
+
+            } catch (err) {
+                alert("❌ ERROR: " + err.message);
+                console.error(err);
+                btn.innerText = "KIRIM KE PAK RT";
+            }
+        });
+    </script>
+</body>
+</html>
